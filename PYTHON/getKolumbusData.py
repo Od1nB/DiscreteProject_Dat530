@@ -1,4 +1,6 @@
 import requests
+from datetime import datetime, time
+
 ##API SITE: https://api.kolumbus.no/restapi/swagger
 
 getBusNr = "6"
@@ -71,24 +73,65 @@ def allPlannedStops(busJourneyID):
     allStops = requests.get('https://api.kolumbus.no/api/journeys/'+busJourneyID+'/stoptimes')
     allStopsData = allStops.json()
     plannedStopList = {}
+    traveltime = []
     for stop in allStopsData:
-        plannedStopList[stop.get('order')] = {"platform_name": stop.get('platform_name'),"alighting":stop.get('alighting'), 'boarding':stop.get('boarding')}
+        plannedStopList[stop.get('order')] = {"platform_name": stop.get('platform_name')}
+
+        ##used for calculating time between stops
+        traveltime.append(stop.get('schedule_departure_time'))
+        
+        if stop.get('order') == 1: 
+            startTime = stop.get('schedule_departure_time')
+        if stop.get('order') == 43:
+            endTime = stop.get('schedule_arrival_time')
+            delay = stop.get('expected_arrival_time')
+
+    stopTimeList = []
+    totalTime = 0
+    for i in range(0,len(traveltime)-1): 
+        if traveltime[i+1] != None: 
+            myTime = datetime.strptime(traveltime[i], "%Y-%m-%dT%H:%M:%S%z")
+            nextStop = datetime.strptime(traveltime[i+1], "%Y-%m-%dT%H:%M:%S%z")
+            timediff = nextStop - myTime
+            stopTimeList.append(nextStop-myTime)
+            totalTime += int(timediff.seconds)
+    print("Average time between two stops: ", totalTime/len(stopTimeList))
+    start_check = datetime.strptime(startTime, "%Y-%m-%dT%H:%M:%S%z")
+    end_check = datetime.strptime(endTime, "%Y-%m-%dT%H:%M:%S%z")
+    expectedTimeOfTrip = end_check - start_check
     sortedID = sorted(plannedStopList.items(), key=lambda item:item[0])
     sortedStops = {k: v for k, v in sortedID}
-    print(sortedStops)
-    return sortedStops
+    return sortedStops, startTime, endTime, delay, expectedTimeOfTrip
     
-inboundBuses, outbondBuses, routeId = getActiveBuses(getBusNr)
-print("ROUTE ID ", routeId)
-print("THE BUS ", outbondBuses[-1])
-busJourneyID = outbondBuses[-1].get('id')
-print("JOURNEY ID ", busJourneyID)
+
+""" busJourneyID = outbondBuses[-1].get('id')
 destinationName = outbondBuses[-1].get('name')
 tripID = outbondBuses[-1].get('trip_id')
-print("TRIP ID ", outbondBuses[-1].get('trip_id'))
 activeBus = getActiveBus(destinationName)
 sortedPlatformList = getAllStops(activeBus.get('journey_id'))
-sortedStops = allPlannedStops(busJourneyID)
+sortedStops = allPlannedStops(busJourneyID) """
+
+def mainFunction(busNr):
+    mainBusNr = busNr
+    inboundBuses, outbondBuses, routeId = getActiveBuses(getBusNr)
+    sandnesBus = len(outbondBuses)
+    stvgBus = len(inboundBuses)
+    busJourneyID = outbondBuses[-1].get('id')
+    destinationName = outbondBuses[-1].get('name')
+
+    mainSortedStops,startTime, endTime, delayTime, tripTime = allPlannedStops(busJourneyID)
+
+    print("LineNr: ", mainBusNr, " - ", destinationName)
+    print("Nr of buses towards Sandnes: ", sandnesBus)
+    print("Nr of buses towards Stavanger: ", stvgBus)
+    print("Start time of route: ", startTime)
+    print("End time of route: ", endTime)
+    print("Total travel time: ", tripTime)
+    print("Expected arrival (+2t mangler) : ", delayTime)
+    print("Stops on the route: ", mainSortedStops)
+
+mainFunction(getBusNr)
+
 
 
 
