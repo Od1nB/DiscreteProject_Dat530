@@ -87,7 +87,7 @@ destinationName = outbondBuses[-1].get('name')
 tripID = outbondBuses[-1].get('trip_id')
 print("TRIP ID ", outbondBuses[-1].get('trip_id'))
 activeBus = getActiveBus(destinationName)
-#sortedPlatformList = getAllStops(activeBus.get('journey_id'))
+sortedPlatformList = getAllStops(activeBus.get('journey_id'))
 sortedStops = allPlannedStops(busJourneyID)
 
 
