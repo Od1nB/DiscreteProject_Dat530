@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime, time
+
 ##API SITE: https://api.kolumbus.no/restapi/swagger
 
 getBusNr = "6"
@@ -130,3 +131,7 @@ def mainFunction(busNr):
     print("Stops on the route: ", mainSortedStops)
 
 mainFunction(getBusNr)
+
+
+
+
