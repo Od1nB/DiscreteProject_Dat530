@@ -5,7 +5,7 @@ import csv
 
 # API SITE: https://api.kolumbus.no/restapi/swagger
 
-getBusNr = "6"
+getBusNr = "X60"
 
 
 def getActiveBuses(busNr):
