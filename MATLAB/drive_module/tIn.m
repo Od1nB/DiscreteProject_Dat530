@@ -5,5 +5,6 @@ function [fire,transition] = tIn (transition)
 %colors = get_color('pStartRoute',tokID);
 
 transition.new_color = "1";
+transition.override = 1;
 fire = 1;
 
