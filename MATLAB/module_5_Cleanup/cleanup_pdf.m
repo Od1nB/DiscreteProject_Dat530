@@ -5,7 +5,7 @@
 % October 2021
 % Brynjar Ulriksen Steinbakk, Tor-Fredrik Torgersen, Odin Bjørnebo
 function [png] = cleanup_pdf()
-png.PN_name = "Cleanup module";
+png.PN_name = 'Cleanup module';
 png.set_of_Ps = {'pHasParked','pAdminLobby','pCheckedOut'};
 png.set_of_Ts = {'tIn', 'tWait', 'tLobby','tCheckOut'};
 png.set_of_As = {'tIn','pHasParked',1,...
