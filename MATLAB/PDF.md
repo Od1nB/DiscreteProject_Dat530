@@ -1,7 +1,4 @@
-# PETRINET
-
-
-## PDFs
+# PDFs
 For making petrinet modules you first need to make a PDF to describe your system.
 
 These are made as MATLAB functions, start with something like this
