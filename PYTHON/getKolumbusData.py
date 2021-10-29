@@ -1,11 +1,14 @@
 import requests
 from datetime import datetime, timedelta
 import csv
+import time
 
 
 # API SITE: https://api.kolumbus.no/restapi/swagger
 
-getBusNr = "X60"
+getBusNr = "6"
+
+busLines = ["2", "3", "4", "5", "6", "X60"]
 
 
 def getActiveBuses(busNr):
@@ -130,21 +133,24 @@ def allPlannedStops(busJourneyID):
     return sortedStops, startTime, endTime, timediff,diff,  expectedTimeOfTrip, delay, avgTimeStops
 
 
-""" busJourneyID = outbondBuses[-1].get('id')
-destinationName = outbondBuses[-1].get('name')
-tripID = outbondBuses[-1].get('trip_id')
-activeBus = getActiveBus(destinationName)
-sortedPlatformList = getAllStops(activeBus.get('journey_id'))
-sortedStops = allPlannedStops(busJourneyID) """
 
-
-def mainFunction(busNr):
+def mainFunction(busNr, index):
+    print(busNr, index)
     mainBusNr = busNr
     inboundBuses, outbondBuses, routeId = getActiveBuses(getBusNr)
     print("outboundBus", outbondBuses)
     print("inboundBus", inboundBuses)
-    busJourneyID = outbondBuses[-1].get('id')
-    destinationName = outbondBuses[-1].get('name')
+    if len(outbondBuses) > 0: 
+        print("outboundBuses ")
+        useBus = outbondBuses
+    elif len(inboundBuses) > 0:
+        print("inboundBuses")
+        useBus = inboundBuses
+    else:
+        return ("did not fetch any buses on line", busNr)
+
+    busJourneyID = useBus[0].get('id')
+    destinationName = useBus[0].get('name')
 
     mainSortedStops, startTime, endTime, delayTime, timeDiff, tripTime, actualArrival, avgTravel = allPlannedStops(
         busJourneyID)
@@ -155,15 +161,13 @@ def mainFunction(busNr):
         timeDifference = timeDiff
     fields = ['LineNr', 'DestionationName', 'StartRouteTime', 'EndRouteTime', 'TripTime', 'ActualArrival', timeDifference , 'Time between stops', 'Platforms']
     rows = [[str(mainBusNr), str(destinationName), str(startTime), str(endTime), str(tripTime), str(actualArrival), str(delayTime),str(avgTravel),str(mainSortedStops)]]
-    filename='route'+mainBusNr+'.csv'
+    filename='route'+mainBusNr+'_'+index+'.csv'
     with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
         csvwriter.writerows(rows)
 
     print("LineNr: ", mainBusNr, " - ", destinationName)
-    #print("Nr of buses towards Sandnes: ", sandnesBus)
-    #print("Nr of buses towards Stavanger: ", stvgBus)
     print("Start time of route: ", startTime)
     print("End time of route: ", endTime)
     print("Total travel time: ", tripTime)
@@ -172,5 +176,20 @@ def mainFunction(busNr):
     print("Stops on the route: ", mainSortedStops)
     print("Avg time between stops", avgTravel)
 
+def collectDataOverTime(busLines):
+    index = 0
+    now = datetime.now()
+    tomorrow = datetime.now() + timedelta(days=1)
+    print(now, tomorrow)
+    
+    while datetime.now() < tomorrow:
+        print("time now is", datetime.now)
+        for bus in busLines:
+            print("fetching bus", bus)
+            mainFunction(bus, str(index))
+        index += 1
+        time.sleep(1800)
 
-mainFunction(getBusNr)
+
+#mainFunction(getBusNr,"0")
+collectDataOverTime(busLines)
