@@ -25,9 +25,9 @@ function [busNr, departures, routeTime, deviation, changeDriver,...
 %
 
 
-busRoutes = {"2","4","6","X60"}; %the bus routes we will compare
-
-[num,txt,raw] = xlsread(file);
+busRouteName = {"2","4","6","X60"}; %the bus routes we will compare
+[num,txt,raw] = xlsread('busRoutes.xlsx'); %file = 'busRoutes.xlsx'
+disp(raw);
 busNr = [];
 departures = [];
 routeTime=[];
@@ -35,4 +35,19 @@ deviation=[];
 changeDriver=[];
 changeDriverStop=[];
 changeDriverTime=[];
+a = 0; % Index tracker
+% What do I want to do with the data?
+for i=(1:size(raw,1))
+    disp(raw(i,1));
+    currentBus = int2str(raw(i,1));
+    if strcmp(currentBus,'6')
+        disp("im here");
+        a=a+1;
+        DEP(a) = raw(i,2);
+        RouteTime(a) = raw(i,3);
+        disp(DEP);
+        disp(RouteTime);
+    end
+end       
+    
 
