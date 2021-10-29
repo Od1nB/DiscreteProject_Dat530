@@ -1,4 +1,4 @@
-function [png] = preparation_dpf()
+function [png] = preparation_pdf()
 %PREPARATION_DPF Summary of this function goes here
 %   Detailed explanation goes here
 png.PN_name = 'Module 2 Preparation';
