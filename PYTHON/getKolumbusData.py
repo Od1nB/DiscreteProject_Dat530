@@ -8,7 +8,7 @@ import time
 
 getBusNr = "6"
 
-busLines = ["2", "3", "4", "5", "6", "X60"]
+busLines = ["7", "3", "4", "5", "6", "X60"]
 
 
 def getActiveBuses(busNr):
@@ -137,7 +137,7 @@ def allPlannedStops(busJourneyID):
 def mainFunction(busNr, index):
     print(busNr, index)
     mainBusNr = busNr
-    inboundBuses, outbondBuses, routeId = getActiveBuses(getBusNr)
+    inboundBuses, outbondBuses, routeId = getActiveBuses(busNr)
     print("outboundBus", outbondBuses)
     print("inboundBus", inboundBuses)
     if len(outbondBuses) > 0: 
@@ -188,7 +188,7 @@ def collectDataOverTime(busLines):
             print("fetching bus", bus)
             mainFunction(bus, str(index))
         index += 1
-        time.sleep(1800)
+        time.sleep(1800) #1800 = 30 min
 
 
 #mainFunction(getBusNr,"0")
