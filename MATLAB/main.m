@@ -53,3 +53,6 @@ pni = initialdynamics(pns,dyn);
 
 %Run Simulation
 sim = gpensim(pni);
+
+prnss(sim); % print the simulation results 
+plotp(sim, {'pCheckedOut'}); % plot the results
