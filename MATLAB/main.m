@@ -13,9 +13,15 @@ pns = pnsstruct({'module_0_Connector/connector_pdf',...
     'module_4_Driving/driving_pdf',...
     'module_5_Cleanup/cleanup_pdf',...
     });
-pni = initialdynamics(pns,dyn);
 
 % firing times
-dyn.ft = {}
+dyn.ft = {};
+
+% initial state
+dyn.m0 ={};
+
+pni = initialdynamics(pns,dyn);
+
+
 %Run Simulation
 sim = gpensim(pni);
