@@ -127,6 +127,8 @@ def allPlannedStops(busJourneyID):
         elif end_check > delay: 
             timediff = end_check - delay
             diff = "early"
+    else: 
+        diff = ""
   
     sortedID = sorted(plannedStopList.items(), key=lambda item: item[0])
     sortedStops = {k: v for k, v in sortedID}
@@ -138,13 +140,13 @@ def mainFunction(busNr, index):
     print(busNr, index)
     mainBusNr = busNr
     inboundBuses, outbondBuses, routeId = getActiveBuses(busNr)
-    print("outboundBus", outbondBuses)
-    print("inboundBus", inboundBuses)
+    #print("outboundBus", outbondBuses)
+    #print("inboundBus", inboundBuses)
     if len(outbondBuses) > 0: 
-        print("outboundBuses ")
+        #print("outboundBuses ")
         useBus = outbondBuses
     elif len(inboundBuses) > 0:
-        print("inboundBuses")
+        #print("inboundBuses")
         useBus = inboundBuses
     else:
         return ("did not fetch any buses on line", busNr)
@@ -167,14 +169,14 @@ def mainFunction(busNr, index):
         csvwriter.writerow(fields)
         csvwriter.writerows(rows)
 
-    print("LineNr: ", mainBusNr, " - ", destinationName)
-    print("Start time of route: ", startTime)
-    print("End time of route: ", endTime)
-    print("Total travel time: ", tripTime)
-    print("Actual arrival time: ", actualArrival)
-    print("Bus", timeDifference, delayTime)
-    print("Stops on the route: ", mainSortedStops)
-    print("Avg time between stops", avgTravel)
+   # print("LineNr: ", mainBusNr, " - ", destinationName)
+   # print("Start time of route: ", startTime)
+   # print("End time of route: ", endTime)
+    #print("Total travel time: ", tripTime)
+    #print("Actual arrival time: ", actualArrival)
+    #print("Bus", timeDifference, delayTime)
+    #print("Stops on the route: ", mainSortedStops)
+    #print("Avg time between stops", avgTravel)
 
 def collectDataOverTime(busLines):
     index = 0
@@ -183,9 +185,9 @@ def collectDataOverTime(busLines):
     print(now, tomorrow)
     
     while datetime.now() < tomorrow:
-        print("time now is", datetime.now)
+        #print("time now is", datetime.now)
         for bus in busLines:
-            print("fetching bus", bus)
+            #print("fetching bus", bus)
             mainFunction(bus, str(index))
         index += 1
         time.sleep(1800) #1800 = 30 min
