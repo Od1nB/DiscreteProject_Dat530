@@ -83,11 +83,11 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
    transition.new_color = 'bus_done';
    transition.override = 1;
    fire = 1;
- elseif(strcmp(transition.name, 'tRoutex60_postChange_complete'))
+ elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
    transition.new_color = 'bus_done';
    transition.override = 1;
    fire = 1;
- elseif(strcmp(transition.name, 'tRoutex60_prechange_complete'))
+ elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
    transition.new_color = 'switch';
    transition.override = 1;
    fire = 1;
