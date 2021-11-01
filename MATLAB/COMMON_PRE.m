@@ -71,11 +71,11 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
    fire = 1;
 
  %Module 4 Driving
- elseif(strcmp(transition.name, 'tRoute2_complete'))
+ elseif(strcmp(transition.name, 'tRoute3_complete'))
    transition.new_color = 'bus_done';
    transition.override = 1;
    fire = 1;
- elseif(strcmp(transition.name, 'tRoute4_complete'))
+ elseif(strcmp(transition.name, 'tRoute5_complete'))
    transition.new_color = 'bus_done';
    transition.override = 1;
    fire = 1;
