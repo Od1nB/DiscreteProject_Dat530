@@ -18,22 +18,8 @@ end
 %Check if can fire
 if(strcmp(transition.name, 'tDriveToBusStopG'))
     tokID = tokenAny('pRoutes',1);
-    colors = get_color('pRoutes',tokID);
-    if(strcmp(colors{1},'bus' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
-end
-
-%Check if can fire
-if(strcmp(transition.name, 'tDriveToBusStopR'))
-    tokID = tokenAny('pRoutes',1);
-    colors = get_color('pRoutes',tokID);
-    if(strcmp(colors{1},'vehicle' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    color = g
+    transition.new_color = 'vehicle';
+    fire = 1;
 end
 
