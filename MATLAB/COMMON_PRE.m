@@ -24,7 +24,27 @@ elseif (strcmp(transition.name, 'tRoute3'))
    curr = current_time();
    transition.new_color = num2str(curr);
    fire = 1;
-
+elseif (strcmp(transition.name, 'tRoute5'))
+   transition.override = 1;
+   curr = current_time();
+   transition.new_color = num2str(curr);
+   fire = 1;
+elseif (strcmp(transition.name, 'tRoute6'))
+   transition.override = 1;
+   curr = current_time();
+   transition.new_color = num2str(curr);
+   fire = 1;
+elseif (strcmp(transition.name, 'preChange_tRoutex60'))
+   transition.override = 1;
+   curr = current_time();
+   transition.new_color = num2str(curr);
+   fire = 1;
+elseif (strcmp(transition.name, 'postChange_tRoutex60'))
+   transition.override = 1;
+   curr = current_time();
+   transition.new_color = num2str(curr);
+   fire = 1;
+   
 %Check if can fire
 elseif(strcmp(transition.name, 'tDriveToBusStopBus'))
     tokID = tokenAny('pRoutes',1);
@@ -90,31 +110,66 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0;
     end
-   % if(strcmp(colors{1},'switch' )) %check if correct color
-   %     fire = 1;
-   % else
-   %     fire = 0;
-   % end
-   %transition.new_color = 'bus_done';
-   %transition.override = 1;
-   %fire = 1;
- elseif(strcmp(transition.name, 'tRoute5_complete'))
-   transition.new_color = 'bus_done';
-   transition.override = 1;
-   fire = 1;
- elseif(strcmp(transition.name, 'tRoute6_complete'))
-   transition.new_color = 'bus_done';
-   transition.override = 1;
-   fire = 1;
- elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
-   transition.new_color = 'bus_done';
-   transition.override = 1;
-   fire = 1;
- elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
-   transition.new_color = 'switch';
-   transition.override = 1;
-   fire = 1;
 
+    
+ elseif(strcmp(transition.name, 'tRoute5_complete'))
+    tokID = tokenAny('pOnRoute5',1);
+    colors = get_color('pOnRoute5',tokID);
+    startTime = str2double(colors{1});
+    mediateTime = current_time() - startTime;
+    tripTime = 18;
+    
+    if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.new_color = 'bus_done';
+        transition.override = 1;
+        fire = 1;
+    else
+        fire = 0; 
+    end
+    
+ elseif(strcmp(transition.name, 'tRoute6_complete'))
+    tokID = tokenAny('pOnRoute6',1);
+    colors = get_color('pOnRoute6',tokID);
+    startTime = str2double(colors{1});
+    mediateTime = current_time() - startTime;
+    tripTime = 38;
+    
+    if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.new_color = 'bus_done';
+        transition.override = 1;
+        fire = 1;
+    else
+        fire = 0; 
+    end
+    
+ elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
+    tokID = tokenAny('postChange_pOnRoutex60',1);
+    colors = get_color('postChange_pOnRoutex60',tokID);
+    startTime = str2double(colors{1});
+    mediateTime = current_time() - startTime;
+    tripTime = 13;
+    
+    if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.new_color = 'bus_done';
+        transition.override = 1;
+        fire = 1;
+    else
+        fire = 0;
+    end
+    
+ elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
+    tokID = tokenAny('preChange_pOnRoutex60',1);
+    colors = get_color('preChange_pOnRoutex60',tokID);
+    startTime = str2double(colors{1});
+    mediateTime = current_time() - startTime;
+    tripTime = 26;
+    if ge(mediateTime, tripTime)   
+       transition.new_color = 'switch';
+       transition.override = 1;
+       fire = 1;
+    else
+        fire = 0;
+    end
    
    
    
