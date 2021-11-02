@@ -19,6 +19,11 @@ elseif(strcmp(transition.name, 'tPick_up_car'))
 
 
 %module 3 routes
+elseif (strcmp(transition.name, 'tRoute3'))
+   transition.override = 1;
+   curr = current_time();
+   transition.new_color = num2str(curr);
+   fire = 1;
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tDriveToBusStopBus'))
@@ -72,9 +77,27 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
 
  %Module 4 Driving
  elseif(strcmp(transition.name, 'tRoute3_complete'))
-   transition.new_color = 'bus_done';
-   transition.override = 1;
-   fire = 1;
+    tokID = tokenAny('pOnRoute3',1);
+    colors = get_color('pOnRoute3',tokID);
+    startTime = str2double(colors{1});
+    mediateTime = current_time() - startTime;
+    tripTime = 60;
+    
+    if ge(mediateTime, tripTime) %check if drivingTime is correct
+        fire = 1;
+        transition.new_color = 'bus_done';
+        transition.override = 1;
+    else
+        fire = 0;
+    end
+   % if(strcmp(colors{1},'switch' )) %check if correct color
+   %     fire = 1;
+   % else
+   %     fire = 0;
+   % end
+   %transition.new_color = 'bus_done';
+   %transition.override = 1;
+   %fire = 1;
  elseif(strcmp(transition.name, 'tRoute5_complete'))
    transition.new_color = 'bus_done';
    transition.override = 1;
