@@ -10,12 +10,12 @@ global global_info;
 if(strcmp(transition.name, 'tPick_up_bus_from_parking'))
     transition.new_color = 'bus';
     fire = 1;
-
+    return
 %Check if can fire
 elseif(strcmp(transition.name, 'tPick_up_car'))
     transition.new_color = 'vehicle';
     fire = 1;
-
+    return
 
 %module 3 routes
 elseif (strcmp(transition.name, 'tRoute3'))
@@ -29,6 +29,7 @@ elseif (strcmp(transition.name, 'tRoute3'))
    transition.selectedTokens =tokenID;
    fire = tokenID;
    end
+   return
 elseif (strcmp(transition.name, 'tRoute5'))
    tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
    if( tokenID == 0)
@@ -40,6 +41,7 @@ elseif (strcmp(transition.name, 'tRoute5'))
    transition.selectedTokens =tokenID;
    fire = tokenID;
    end
+   return
 elseif (strcmp(transition.name, 'tRoute6'))
    tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
    if( tokenID == 0)
@@ -51,6 +53,8 @@ elseif (strcmp(transition.name, 'tRoute6'))
    transition.selectedTokens =tokenID;
    fire = tokenID;
    end
+   return
+   
 elseif (strcmp(transition.name, 'preChange_tRoutex60'))
    tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
    if( tokenID == 0)
@@ -62,6 +66,8 @@ elseif (strcmp(transition.name, 'preChange_tRoutex60'))
    transition.selectedTokens =tokenID;
    fire = tokenID;
    end
+   return
+   
 elseif (strcmp(transition.name, 'postChange_tRoutex60'))
    tokenID = tokenAllColor('pBussdriver', 1, {'switch'});
    if( tokenID == 0)
@@ -73,6 +79,7 @@ elseif (strcmp(transition.name, 'postChange_tRoutex60'))
    transition.selectedTokens = tokenID;
    fire = tokenID;
    end
+   return
 %Check if can fire
 elseif(strcmp(transition.name, 'tDriveToBusStopBus'))
     tokID = tokenAny('pRoutes',1);
@@ -82,6 +89,7 @@ elseif(strcmp(transition.name, 'tDriveToBusStopBus'))
     else
         fire = 0;
     end
+    return
 
 
 %Check if can fire
@@ -93,6 +101,7 @@ elseif(strcmp(transition.name, 'tDriveToBusStopCar'))
     else
         fire = 0;
     end
+    return
 
 
 %Check if can fire
@@ -104,6 +113,7 @@ elseif(strcmp(transition.name, 'tTakeBusToParking'))
     else
         fire = 0;
     end
+    return
 
 
 %Check if can fire
@@ -115,6 +125,7 @@ elseif(strcmp(transition.name, 'tChangeDriver'))
     else
         fire = 0;
     end
+    return
 
 
 %Check if can fire
@@ -122,6 +133,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
    transition.new_color = 'vehicle_done';
    transition.override = 1;
    fire = 1;
+   return
 
  %Module 4 Driving
  elseif(strcmp(transition.name, 'tRoute3_complete'))
@@ -142,6 +154,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0;
     end
+    return
 
     
  elseif(strcmp(transition.name, 'tRoute5_complete'))
@@ -158,6 +171,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0; 
     end
+    return
     
  elseif(strcmp(transition.name, 'tRoute6_complete'))
     tokID = tokenArrivedEarly('pOnRoute6',1);
@@ -173,6 +187,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0; 
     end
+    return
     
  elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
     tokID = tokenArrivedEarly('postChange_pOnRoutex60',1);
@@ -188,6 +203,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0;
     end
+    return
     
  elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
     tokID = tokenArrivedEarly('preChange_pOnRoutex60',1); %tokenArrivedEarly
@@ -202,6 +218,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0;
     end
+    return
    
    
    
@@ -216,7 +233,7 @@ elseif(strcmp(transition.name, 'tWait'))
     else
         fire = 0;
     end
-
+    return
     %Check if can fire
 elseif(strcmp(transition.name, 'tLobby'))
     tokID = tokenAny('pHasParked',1);
@@ -226,7 +243,7 @@ elseif(strcmp(transition.name, 'tLobby'))
     else
         fire = 0;
     end
-
+    return
 
  
 
@@ -240,7 +257,9 @@ elseif(strcmp(transition.name, 'tLobby'))
 % Must have this to trigger all other transitions
 else
     fire = 1;
+    return
 end
+
 
 
 
