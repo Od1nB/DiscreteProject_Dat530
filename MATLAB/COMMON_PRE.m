@@ -8,13 +8,25 @@ global global_info;
 
 %Check if can fire
 if(strcmp(transition.name, 'tPick_up_bus_from_parking'))
+    tokID = tokenAny('pWait',1);
+    if (tokID == 0)
+        fire = tokID;
+        return
+    end
     transition.new_color = 'bus';
-    fire = 1;
+    transition.selected_tokens =tokID;
+    fire = tokID;
     return
 %Check if can fire
 elseif(strcmp(transition.name, 'tPick_up_car'))
+     tokID = tokenAny('pWait',1);
+    if (tokID == 0)
+        fire = tokID;
+        return
+    end
     transition.new_color = 'vehicle';
-    fire = 1;
+    transition.selected_tokens =tokID;
+    fire = tokID;
     return
 
 %module 3 routes
@@ -82,57 +94,37 @@ elseif (strcmp(transition.name, 'postChange_tRoutex60'))
    return
 %Check if can fire
 elseif(strcmp(transition.name, 'tDriveToBusStopBus'))
-    tokID = tokenAny('pRoutes',1);
-    colors = get_color('pRoutes',tokID);
-    if(strcmp(colors{1},'bus' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+     tokID = tokenAllColor('pRoutes', 1, {'bus'});
+     fire = tokID;
     return
 
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tDriveToBusStopCar'))
-    tokID = tokenAny('pRoutes',1);
-    colors = get_color('pRoutes',tokID);
-    if(strcmp(colors{1},'vehicle' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    tokID = tokenAllColor('pRoutes', 1, {'vehicle'});
+     fire = tokID;
     return
-
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tTakeBusToParking'))
-    tokID = tokenAny('pLastStop',1);
-    colors = get_color('pLastStop',tokID);
-    if(strcmp(colors{1},'bus_done' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    tokID = tokenAllColor('pLastStop', 1, {'bus_done'});
+    fire = tokID;
     return
 
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tChangeDriver'))
-    tokID = tokenAny('pLastStop',1);
-    colors = get_color('pLastStop',tokID);
-    if(strcmp(colors{1},'switch' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    tokID = tokenAllColor('pLastStop', 1, {'switch'});
+    fire = tokID;
     return
 
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tTakeCarToParking'))
+   tokID = tokenAny('pInCar',1);
    transition.new_color = 'vehicle_done';
    transition.override = 1;
-   fire = 1;
+   fire = tokID;
    return
 
  %Module 4 Driving
