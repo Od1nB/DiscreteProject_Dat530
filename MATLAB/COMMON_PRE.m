@@ -141,9 +141,9 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     colors = get_color('pOnRoute3',tokID1);
     startTime = str2double(colors{1});
     avgDelay = 0.67; %40 seconds from Kolumbus
-    startTime = startTime+avgDelay;% startTime - avg. delay
+    startTime = startTime-avgDelay;% startTime - avg. delay
     mediateTime = current_time() - startTime;
-    tripTime = 60+avgDelay; % Minus the time the startTime is delyed?
+    tripTime = 60-avgDelay; % Minus the time the startTime is delyed?
     diffTime = normrnd(avgDelay, 2.08); %125s std.dev delay from Kolumbus
     mediateTime = mediateTime + diffTime; % timeTaken + random delay
     if ge(mediateTime, tripTime) %check if drivingTime is correct
@@ -158,16 +158,20 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
 
     
  elseif(strcmp(transition.name, 'tRoute5_complete'))
-    tokID = tokenArrivedEarly('pOnRoute5',1);
-    colors = get_color('pOnRoute5',tokID);
+    tokID1 = tokenArrivedEarly('pOnRoute5',1);
+    colors = get_color('pOnRoute5',tokID1);
     startTime = str2double(colors{1});
+    avgDelay = 1.85; %111 seconds from Kolumbus
+    startTime = startTime-avgDelay;% startTime - avg. delay
     mediateTime = current_time() - startTime;
-    tripTime = 18;
-    
+    tripTime = 18-avgDelay; % Minus the time the startTime is delyed?
+    diffTime = normrnd(avgDelay, 4.06); %244s std.dev delay from Kolumbus
+    mediateTime = mediateTime + diffTime; % timeTaken + random delay
     if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.selected_tokens = tokID1;
         transition.new_color = 'bus_done';
         transition.override = 1;
-        fire = 1;
+        fire = (tokID1);
     else
         fire = 0; 
     end
