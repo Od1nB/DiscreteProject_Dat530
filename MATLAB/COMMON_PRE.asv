@@ -20,51 +20,33 @@ elseif(strcmp(transition.name, 'tPick_up_car'))
 
 %module 3 routes
 elseif (strcmp(transition.name, 'tRoute3'))
-   tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
-   if( tokenID == 0)
-       fire = 0;
-   else
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
-   end
+   fire = 1;
 elseif (strcmp(transition.name, 'tRoute5'))
-   tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
-   if( tokenID == 0)
-       fire = 0;
-   else
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
-   end
+   fire = 1;
 elseif (strcmp(transition.name, 'tRoute6'))
-   tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
-   if( tokenID == 0)
-       fire = 0;
-   else
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
-   end
+   fire = 1;
 elseif (strcmp(transition.name, 'preChange_tRoutex60'))
    tokenID = tokenAllColor('pBussdriver', 1, {'bus'});
+   disp(tokenID);
    if( tokenID == 0)
        fire = 0;
    else
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
-   end
+   fire = 1;
 elseif (strcmp(transition.name, 'postChange_tRoutex60'))
    tokenID = tokenAllColor('pBussdriver', 1, {'switch'});
+   disp(tokenID);
    if( tokenID == 0)
        fire = 0;
    else

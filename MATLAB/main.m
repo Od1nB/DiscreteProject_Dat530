@@ -40,7 +40,7 @@ sim = gpensim(pni);
 %prnsys(sim);
 prnss(sim); % print the simulation results 
 % 'pOnRoute3', 'pOnRoute5','pOnRoute6', 'preChange_pOnRoutex60',...
-plotp(sim, {'postChange_pOnRoutex60', 'preChange_pOnRoutex60'}) %plot routes
+plotp(sim, {'pOnRoute3'}) %plot routes
 %plotp(sim, {'pWait','pBussdriver',...
- %   'pBussRouteDone','pCheckedOut'}); % plot the results
-%prnfinalcolors(sim);
+%    'pBussRouteDone','pCheckedOut'}); % plot the results
+prnfinalcolors(sim);
