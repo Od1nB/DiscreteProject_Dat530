@@ -99,11 +99,11 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     tokID1 = tokenArrivedEarly('pOnRoute3',1); %tokenAny -> tokenArrivedEarly
     colors = get_color('pOnRoute3',tokID1);
     startTime = str2double(colors{1});
-    avgDelay = 0.4; %40 seconds from Kolumbus
+    avgDelay = 0.67; %40 seconds from Kolumbus
     startTime = startTime+avgDelay;% startTime - avg. delay
     mediateTime = current_time() - startTime;
     tripTime = 60+avgDelay; % Minus the time the startTime is delyed?
-    diffTime = normrnd(avgDelay, 1.2); %1.2 std.dev delay from Kolumbus
+    diffTime = normrnd(avgDelay, 2.08); %125s std.dev delay from Kolumbus
     mediateTime = mediateTime + diffTime; % timeTaken + random delay
     if ge(mediateTime, tripTime) %check if drivingTime is correct
         transition.selected_tokens = tokID1;

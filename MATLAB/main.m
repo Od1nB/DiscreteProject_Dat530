@@ -28,7 +28,8 @@ dyn.ft = {
     };
 
 % initial state
-dyn.m0 ={'pAdministration', 4}; %inital tokens
+dyn.m0 ={'pAdministration', 4, ...
+    'pTotalBusDrivers', 8}; %inital tokens
 
 %Resources
 %dynamicpart.re = {'bus',4,inf};
@@ -40,7 +41,7 @@ sim = gpensim(pni);
 %prnsys(sim);
 prnss(sim); % print the simulation results 
 % 'pOnRoute3', 'pOnRoute5','pOnRoute6', 'preChange_pOnRoutex60',...
-plotp(sim, {'postChange_pOnRoutex60', 'preChange_pOnRoutex60'}) %plot routes
+plotp(sim, {'pOnRoute3'}) %plot routes
 %plotp(sim, {'pWait','pBussdriver',...
  %   'pBussRouteDone','pCheckedOut'}); % plot the results
 %prnfinalcolors(sim);
