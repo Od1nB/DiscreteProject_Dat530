@@ -1,7 +1,6 @@
 function[fire, transition] = COMMON_PRE(transition)
 % function [fire, trans] = COMMON_PRE(trans)
 global global_info;
-
 %pWait = ntokens('pWait'); %check how many items tokens in pWait if
 %neccesary
 
@@ -126,23 +125,27 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
 
  %Module 4 Driving
  elseif(strcmp(transition.name, 'tRoute3_complete'))
-    tokID = tokenAny('pOnRoute3',1);
-    colors = get_color('pOnRoute3',tokID);
+    tokID1 = tokenArrivedEarly('pOnRoute3',1); %tokenAny -> tokenArrivedEarly
+    colors = get_color('pOnRoute3',tokID1);
     startTime = str2double(colors{1});
+    avgDelay = 0.67; %40 seconds from Kolumbus
+    startTime = startTime+avgDelay;% startTime - avg. delay
     mediateTime = current_time() - startTime;
-    tripTime = 60;
-    
+    tripTime = 60+avgDelay; % Minus the time the startTime is delyed?
+    diffTime = normrnd(avgDelay, 2.08); %125s std.dev delay from Kolumbus
+    mediateTime = mediateTime + diffTime; % timeTaken + random delay
     if ge(mediateTime, tripTime) %check if drivingTime is correct
-        fire = 1;
+        transition.selected_tokens = tokID1;
         transition.new_color = 'bus_done';
         transition.override = 1;
+        fire = (tokID1);
     else
         fire = 0;
     end
 
     
  elseif(strcmp(transition.name, 'tRoute5_complete'))
-    tokID = tokenAny('pOnRoute5',1);
+    tokID = tokenArrivedEarly('pOnRoute5',1);
     colors = get_color('pOnRoute5',tokID);
     startTime = str2double(colors{1});
     mediateTime = current_time() - startTime;
@@ -157,7 +160,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     end
     
  elseif(strcmp(transition.name, 'tRoute6_complete'))
-    tokID = tokenAny('pOnRoute6',1);
+    tokID = tokenArrivedEarly('pOnRoute6',1);
     colors = get_color('pOnRoute6',tokID);
     startTime = str2double(colors{1});
     mediateTime = current_time() - startTime;
@@ -172,7 +175,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     end
     
  elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
-    tokID = tokenAny('postChange_pOnRoutex60',1);
+    tokID = tokenArrivedEarly('postChange_pOnRoutex60',1);
     colors = get_color('postChange_pOnRoutex60',tokID);
     startTime = str2double(colors{1});
     mediateTime = current_time() - startTime;
@@ -187,7 +190,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     end
     
  elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
-    tokID = tokenAny('preChange_pOnRoutex60',1);
+    tokID = tokenArrivedEarly('preChange_pOnRoutex60',1); %tokenArrivedEarly
     colors = get_color('preChange_pOnRoutex60',tokID);
     startTime = str2double(colors{1});
     mediateTime = current_time() - startTime;

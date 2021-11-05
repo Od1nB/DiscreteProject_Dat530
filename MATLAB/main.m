@@ -28,7 +28,8 @@ dyn.ft = {
     };
 
 % initial state
-dyn.m0 ={'pAdministration', 4}; %inital tokens
+dyn.m0 ={'pAdministration', 4, ...
+    'pTotalBusDrivers', 8}; %inital tokens
 
 %Resources
 %dynamicpart.re = {'bus',4,inf};
