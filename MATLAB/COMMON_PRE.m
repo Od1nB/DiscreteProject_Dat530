@@ -29,14 +29,9 @@ if(strcmp(transition.name, 'tPick_up_bus_from_parking'))
     return
 %Check if can fire
 elseif(strcmp(transition.name, 'tPick_up_car'))
-     tokID = tokenAny('pWait',1);
-    if (tokID == 0)
-        fire = tokID;
-        return
-    end
     transition.new_color = 'vehicle';
-    transition.selected_tokens =tokID;
-    fire = tokID;
+    transition.override =1;
+    fire = 1;
     return
 
 %module 3 routes
@@ -125,8 +120,15 @@ elseif(strcmp(transition.name, 'tTakeBusToParking'))
 %Check if can fire
 elseif(strcmp(transition.name, 'tChangeDriver'))
     tokID = tokenAllColor('pLastStop', 1, {'switch'});
-    fire = tokID;
-    return
+    tokID2 = tokenAny('pArriveAtBusStop',1);
+    if(tokID ~= 0)
+        if(tokID2 ~=0)
+            fire = tokID;
+            return
+        end 
+    end
+    fire = 0;
+    
 
 
 %Check if can fire
