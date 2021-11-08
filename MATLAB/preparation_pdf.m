@@ -1,6 +1,6 @@
 function [png] = preparation_pdf()
-%PREPARATION_DPF Summary of this function goes here
-%   Detailed explanation goes here
+%PREPARATION_pdf is the petri net definition of module 2
+%  
 png.PN_name = 'Module 2 Preparation';
 png.set_of_Ps = {'pWait', 'pvehicle_ready'};
 png.set_of_Ts = {'tPick_up_bus_from_parking', 'tPick_up_car'};
