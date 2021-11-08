@@ -4,6 +4,16 @@ global global_info;
 %pWait = ntokens('pWait'); %check how many items tokens in pWait if
 %neccesary
 
+%Module 1 Generation
+
+if (strcmp(transition.name, 'tBusDriverGenerator')) 
+    % if the enabled transition is "tBusDriverGenerator", just exit, as 
+    % conditions for its firing are coded in  its own 
+    % specific file "tBusDriverGenerator.m"
+    fire = 1;
+    return
+end
+
 %Module 2 preparation 
 
 %Check if can fire
