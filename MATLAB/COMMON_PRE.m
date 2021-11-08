@@ -38,8 +38,8 @@ elseif (strcmp(transition.name, 'tRoute3'))
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
+   transition.selected_tokens =tokenID;
+   fire = (tokenID);
    end
    return
 elseif (strcmp(transition.name, 'tRoute5'))
@@ -50,8 +50,8 @@ elseif (strcmp(transition.name, 'tRoute5'))
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
+   transition.selected_tokens =tokenID;
+   fire = (tokenID);
    end
    return
 elseif (strcmp(transition.name, 'tRoute6'))
@@ -62,8 +62,8 @@ elseif (strcmp(transition.name, 'tRoute6'))
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
+   transition.selected_tokens =tokenID;
+   fire = (tokenID);
    end
    return
    
@@ -75,8 +75,8 @@ elseif (strcmp(transition.name, 'preChange_tRoutex60'))
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens =tokenID;
-   fire = tokenID;
+   transition.selected_tokens =tokenID;
+   fire = (tokenID);
    end
    return
    
@@ -88,8 +88,8 @@ elseif (strcmp(transition.name, 'postChange_tRoutex60'))
    transition.override = 1;
    curr = current_time();
    transition.new_color = num2str(curr);
-   transition.selectedTokens = tokenID;
-   fire = tokenID;
+   transition.selected_tokens = tokenID;
+   fire = (tokenID);
    end
    return
 %Check if can fire
