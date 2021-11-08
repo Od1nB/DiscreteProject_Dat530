@@ -153,11 +153,11 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     tokID1 = tokenArrivedEarly('pOnRoute5',1);
     colors = get_color('pOnRoute5',tokID1);
     startTime = str2double(colors{1});
-    avgDelay = 1.85; %111 seconds from Kolumbus
-    startTime = startTime-avgDelay;% startTime - avg. delay
+    avgDelay = 0.85; %111 seconds from Kolumbus
+    startTime = startTime-avgDelay;
     mediateTime = current_time() - startTime;
     tripTime = 18-avgDelay; % Minus the time the startTime is delyed?
-    diffTime = normrnd(avgDelay, 4.06); %244s std.dev delay from Kolumbus
+    diffTime = normrnd(avgDelay, 2.06); %244s std.dev delay from Kolumbus
     mediateTime = mediateTime + diffTime; % timeTaken + random delay
     if ge(mediateTime, tripTime) %check if drivingTime is correct
         transition.selected_tokens = tokID1;
@@ -170,47 +170,60 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     return
     
  elseif(strcmp(transition.name, 'tRoute6_complete'))
-    tokID = tokenArrivedEarly('pOnRoute6',1);
-    colors = get_color('pOnRoute6',tokID);
+    tokID1 = tokenArrivedEarly('pOnRoute6',1);
+    colors = get_color('pOnRoute6',tokID1);
     startTime = str2double(colors{1});
+    avgDelay = 1.8; %112 seconds
+    startTime = startTime - avgDelay; 
     mediateTime = current_time() - startTime;
-    tripTime = 38;
-    
+    tripTime = 38-avgDelay;
+    diffTime = normrnd(avgDelay,2.73); % 164 seconds from Kolumbus
+    mediateTime = mediateTime + diffTime;
     if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.selected_tokens = tokID1; 
         transition.new_color = 'bus_done';
         transition.override = 1;
-        fire = 1;
+        fire = (tokID1);
     else
         fire = 0; 
     end
     return
     
  elseif(strcmp(transition.name, 'postChange_tRoutex60_complete'))
-    tokID = tokenArrivedEarly('postChange_pOnRoutex60',1);
-    colors = get_color('postChange_pOnRoutex60',tokID);
+    tokID1 = tokenArrivedEarly('postChange_pOnRoutex60',1);
+    colors = get_color('postChange_pOnRoutex60',tokID1);
     startTime = str2double(colors{1});
+    avgDelay = 0.42; %25 seconds 
+    startTime = startTime - avgDelay;
     mediateTime = current_time() - startTime;
-    tripTime = 13;
-    
+    tripTime = 13-avgDelay;
+    diffTime = normrnd(avgDelay, 1.12); 
+    mediateTime = mediateTime + diffTime;
     if ge(mediateTime, tripTime) %check if drivingTime is correct
+        transition.selected_tokens = tokID1;
         transition.new_color = 'bus_done';
         transition.override = 1;
-        fire = 1;
+        fire = (tokID1);
     else
         fire = 0;
     end
     return
     
  elseif(strcmp(transition.name, 'preChange_tRoutex60_complete'))
-    tokID = tokenArrivedEarly('preChange_pOnRoutex60',1); %tokenArrivedEarly
-    colors = get_color('preChange_pOnRoutex60',tokID);
+    tokID1 = tokenArrivedEarly('preChange_pOnRoutex60',1); %tokenArrivedEarly
+    colors = get_color('preChange_pOnRoutex60',tokID1);
     startTime = str2double(colors{1});
+    avgDelay = 0.85;
+    startTime = startTime - avgDelay; 
     mediateTime = current_time() - startTime;
-    tripTime = 26;
+    tripTime = 26-avgDelay;
+    diffTime = normrnd(avgDelay,2.24);
+    mediateTime = mediateTime + diffTime;
     if ge(mediateTime, tripTime)   
+       transition.selected_tokens = tokID1; 
        transition.new_color = 'switch';
        transition.override = 1;
-       fire = 1;
+       fire = (tokID1);
     else
         fire = 0;
     end
