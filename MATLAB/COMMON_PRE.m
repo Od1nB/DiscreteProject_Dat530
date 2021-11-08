@@ -246,24 +246,15 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
 
 %Check if can fire
 elseif(strcmp(transition.name, 'tWait'))
-    tokID = tokenAny('pHasParked',1);
-    colors = get_color('pHasParked',tokID);
-    if(strcmp(colors{1},'bus_done' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    tokID = tokenAllColor('pHasParked', 1, {'bus_done'});
+    fire = tokID;
     return
     %Check if can fire
 elseif(strcmp(transition.name, 'tLobby'))
-    tokID = tokenAny('pHasParked',1);
-    colors = get_color('pHasParked',tokID);
-    if(strcmp(colors{1},'vehicle_done' )) %check if correct color
-        fire = 1;
-    else
-        fire = 0;
-    end
+    tokID = tokenAllColor('pHasParked', 1, {'vehicle_done'});
+    fire = tokID;
     return
+    
 
  
 
