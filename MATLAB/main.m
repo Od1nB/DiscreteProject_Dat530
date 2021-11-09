@@ -5,7 +5,7 @@ global global_info;
 %[busNr, departures, routeTime, deviation, changeDriver,...
 %    changeDriverStop, changeDriverTime] = loadData('busRoutes.xlsx');
 
-global_info.STOP_AT = 120; %Stop after 50 time units, as this is timed P/T
+global_info.STOP_AT = 150; %Stop after 50 time units, as this is timed P/T
 global_info.DELTA_TIME = 1;
 global_info.tokens_firing_times = [0 60 100];
 
