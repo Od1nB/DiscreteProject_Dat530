@@ -10,9 +10,18 @@ end
 time_to_generate_token = global_info.tokens_firing_times(1);
 ctime = current_time();
 n = timesfired('tBusDriverGenerator');
-
+if (time_to_generate_token == 0)
+        fire = lt(n,8);
+    elseif (time_to_generate_token == 60)
+        fire = lt(n,16);
+    elseif (time_to_generate_token == 100)
+        fire = lt(n,24);
+    else
+        fire = 0;
+end
 %if fire remove the variable from tokens_firing_times
 if gt(ctime, time_to_generate_token)
+    disp(time_to_generate_token)
     if ge(length(global_info.tokens_firing_times),2)
         global_info.tokens_firing_times = ...
             global_info.tokens_firing_times(2:end);
@@ -20,18 +29,7 @@ if gt(ctime, time_to_generate_token)
         global_info.tokens_firing_times = [];
     end
 end
-if (time_to_generate_token == 0)
-    fire = lt(n,8);
-elseif (time_to_generate_token == 60)
-    disp("in 60")
-    fire = lt(n,16);
-elseif (time_to_generate_token == 100)
-    disp("in 100")
-    disp(n)
-    fire = lt(n,24);
-else
-    fire = 0;
-end
+
 %if lt(ctime, time_to_generate_token) %Not time to fire
 %    fire = 0; return
 %end

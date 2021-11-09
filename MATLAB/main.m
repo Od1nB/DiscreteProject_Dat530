@@ -6,8 +6,8 @@ global global_info;
 %    changeDriverStop, changeDriverTime] = loadData('busRoutes.xlsx');
 
 global_info.STOP_AT = 150; %Stop after 50 time units, as this is timed P/T
-global_info.DELTA_TIME = 1;
-global_info.tokens_firing_times = [0 60 100];
+%global_info.DELTA_TIME = 1;
+global_info.tokens_firing_times =[0 60 100];
 
 %Petri Net structure
 pns = pnstruct({'connector_pdf',...
@@ -45,6 +45,8 @@ sim = gpensim(pni);
 %prnss(sim); % print the simulation results 
 plotp(sim, {'pOnRoute3', 'pOnRoute5','pOnRoute6', 'preChange_pOnRoutex60',...
     'postChange_pOnRoutex60', 'pCheckedOut', 'pTotalNumberOfBusdrivers'})
+ylabel('Active buses on route');
+xlabel('Time in minutes');
 %plotp(sim, {'pOnRoute5','pOnRoute3', 'pCheckedOut','pTotalNumberOfBusdrivers','pArriveAtBusStop','postChange_pOnRoutex60'}) %plot routes
 %plotp(sim, {'pWait','pBussdriver',...
 %    'pBussRouteDone','pCheckedOut'}); % plot the results
