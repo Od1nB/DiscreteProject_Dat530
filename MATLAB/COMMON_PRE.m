@@ -5,7 +5,10 @@ global global_info;
 %neccesary
 
 %Module 1 Generation
-
+if (strcmp(transition.name, 'tGenerator'))
+    fire = 1; 
+    return
+end
 if (strcmp(transition.name, 'tBusDriverGenerator')) 
     % if the enabled transition is "tBusDriverGenerator", just exit, as 
     % conditions for its firing are coded in  its own 
@@ -60,7 +63,6 @@ elseif (strcmp(transition.name, 'tRoute5'))
     avgDelay = 0.85; %111 seconds from Kolumbus
    diffTime = normrnd(avgDelay, 2.06); %244s std.dev delay from Kolumbus
    if le(diffTime, -2)
-       disp(diffTime)
        diffTime = -2;
    end
    curr = curr + diffTime; 
@@ -255,14 +257,6 @@ elseif(strcmp(transition.name, 'tLobby'))
     fire = tokID;
     return
     
-
- 
-
-
-
-
-
-
 
 
 % Must have this to trigger all other transitions

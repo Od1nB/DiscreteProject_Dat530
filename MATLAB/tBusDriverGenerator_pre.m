@@ -21,7 +21,6 @@ if (time_to_generate_token == 0)
 end
 %if fire remove the variable from tokens_firing_times
 if gt(ctime, time_to_generate_token)
-    disp(time_to_generate_token)
     if ge(length(global_info.tokens_firing_times),2)
         global_info.tokens_firing_times = ...
             global_info.tokens_firing_times(2:end);
