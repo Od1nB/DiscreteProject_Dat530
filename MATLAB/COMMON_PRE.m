@@ -60,8 +60,8 @@ elseif (strcmp(transition.name, 'tRoute5'))
    else
    transition.override = 1;
    curr = current_time();
-    avgDelay = 0.85; %111 seconds from Kolumbus
-   diffTime = normrnd(avgDelay, 2.06); %244s std.dev delay from Kolumbus
+    avgDelay = 1.68; %111 seconds from Kolumbus
+   diffTime = normrnd(avgDelay, 4.06); %244s std.dev delay from Kolumbus
    if le(diffTime, -2)
        diffTime = -2;
    end
