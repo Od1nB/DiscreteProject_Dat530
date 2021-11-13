@@ -1,19 +1,11 @@
 function[fire, transition] = COMMON_PRE(transition)
-% function [fire, trans] = COMMON_PRE(trans)
+
 global global_info;
-%pWait = ntokens('pWait'); %check how many items tokens in pWait if
-%neccesary
+
 
 %Module 1 Generation
 if (strcmp(transition.name, 'tGenerator'))
     fire = 1; 
-    return
-end
-if (strcmp(transition.name, 'tBusDriverGenerator')) 
-    % if the enabled transition is "tBusDriverGenerator", just exit, as 
-    % conditions for its firing are coded in  its own 
-    % specific file "tBusDriverGenerator.m"
-    fire = 1;
     return
 end
 
@@ -240,9 +232,7 @@ elseif(strcmp(transition.name, 'tTakeCarToParking'))
     else
         fire = 0;
     end
-    return
-   
-   
+    return  
    
 %module 5 cleanup
 
@@ -255,9 +245,7 @@ elseif(strcmp(transition.name, 'tWait'))
 elseif(strcmp(transition.name, 'tLobby'))
     tokID = tokenAllColor('pHasParked', 1, {'vehicle_done'});
     fire = tokID;
-    return
-    
-
+    return  
 
 % Must have this to trigger all other transitions
 else
