@@ -16,12 +16,12 @@ What is important, what do we want to do
  - [X] Include graphic of API architecture 
 
 3.2 Petri Net
-- [ ] Include the whole picture of the model architecture (simple) 
+- [X] Include the whole picture of the model architecture (simple) 
 
 - [X] Exchange "vanilla" to default 
 
 GPENSIM: 
-- [ ] Include other extension, citations, name them. 
+- [X] Include other extension, citations, name them. 
 
 
 - [X] \newpage on every section 
