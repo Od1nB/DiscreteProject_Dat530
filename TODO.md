@@ -1,7 +1,7 @@
 Kolumbus feedback with Reggie: 
 
 1.0 
-- [ ] Picture of Kolumbus city center
+- [X] Picture of Kolumbus city center
 
 1.1
 - [ ] Clearly specify the problem description
@@ -10,7 +10,7 @@ Kolumbus feedback with Reggie:
 What is important, what do we want to do
 
  2. 
- - [ ] Flytt til relevant works til opp til Chapter 2 
+ - [X] Flytt til relevant works til opp til Chapter 2 
 
  2.1 
  - [ ] Include graphic of API architecture 
@@ -18,13 +18,13 @@ What is important, what do we want to do
 3.2 Petri Net
 - [ ] Include the whole picture of the model architecture (simple) 
 
-- [ ] Exchange "vanilla" 
+- [X] Exchange "vanilla" default 
 
 GPENSIM: 
 - [ ] Include other extension, citations, name them. 
 
 
-- [ ] \newpage on every section 
+- [X] \newpage on every section 
 
 6.2
 Relevant works: 
@@ -32,7 +32,7 @@ Relevant works:
 - [ ] This also gives more citations 
 - [ ] At least 10 citatations 
 
-- [ ] Citations before Appendix 
+- [X] Citations before Appendix 
 - [ ] User manual with appendix A 
 
 Introduce 5.6
