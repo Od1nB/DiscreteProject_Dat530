@@ -6,7 +6,7 @@ Kolumbus feedback with Reggie:
 1.1
 - [ ] Clearly specify the problem description
 (Take example of GPenSIM introduction)
-- [ ] Small graphic as well? 
+- [X] Small graphic as well? 
 What is important, what do we want to do
 
  2. 
