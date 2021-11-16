@@ -4,7 +4,7 @@ Kolumbus feedback with Reggie:
 - [X] Picture of Kolumbus city center
 
 1.1
-- [ ] Clearly specify the problem description
+- [X] Clearly specify the problem description
 (Take example of GPenSIM introduction)
 - [X] Small graphic as well? 
 What is important, what do we want to do
@@ -36,6 +36,6 @@ Relevant works:
 - [X] User manual with appendix A 
 
 Introduce 5.6
-- [ ] Implication (what does the model mean)
+- [X] Implication (what does the model mean)
 
 - [X] Update Appendices numbering
