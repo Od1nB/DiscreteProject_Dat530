@@ -37,3 +37,5 @@ Relevant works:
 
 Introduce 5.6
 - [ ] Implication (what does the model mean)
+
+- [X] Update Appendices numbering
