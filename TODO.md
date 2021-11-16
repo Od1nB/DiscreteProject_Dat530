@@ -28,12 +28,12 @@ GPENSIM:
 
 6.2
 Relevant works: 
-- [ ] Bus ,Routes/Schedule, Petri net 
-- [ ] This also gives more citations 
-- [ ] At least 10 citatations 
+- [X] Bus ,Routes/Schedule, Petri net 
+- [X] This also gives more citations 
+- [X] At least 10 citatations 
 
 - [X] Citations before Appendix 
-- [ ] User manual with appendix A 
+- [X] User manual with appendix A 
 
 Introduce 5.6
 - [ ] Implication (what does the model mean)
